@@ -77,10 +77,6 @@ void my_touchpad_read( lv_indev_drv_t * indev_driver, lv_indev_data_t * data )
     }
 }
 
-
-
-
-
 // Function to create and display a single digit at a specific position
 lv_obj_t* create_digit(const lv_img_dsc_t* img, lv_coord_t x, lv_coord_t y, lv_obj_t* parent) {
     lv_obj_t* digit = lv_img_create(parent);  // Create the digit with the specified parent
@@ -247,7 +243,9 @@ void updateWorldTime() {
     }
 }
 
-void displayTime(int& hours, int& minutes) {
+
+void displayTime(int &hours, int &minutes)
+{
     // Delete existing digits
     lv_obj_del(ui_num_0);
     lv_obj_del(ui_num_1);
@@ -258,16 +256,6 @@ void displayTime(int& hours, int& minutes) {
     lv_obj_add_flag(ui_num_00, LV_OBJ_FLAG_HIDDEN | LV_OBJ_FLAG_ADV_HITTEST);
     lv_obj_add_flag(ui_num_000, LV_OBJ_FLAG_HIDDEN | LV_OBJ_FLAG_ADV_HITTEST);
     lv_obj_add_flag(ui_num_0000, LV_OBJ_FLAG_HIDDEN | LV_OBJ_FLAG_ADV_HITTEST);
-
-    // Handle minute rollover
-    if (minutes >= 60) {
-        minutes = 0;
-        // Handle hour rollover
-        hours = (hours + 1) % 12;
-        if (hours == 0) {
-            hours = 12;  // Set to 12 if it's 0 after rollover
-        }
-    }
 
     // Display hours at the specified positions
     int digit1 = (hours / 10) % 10;
